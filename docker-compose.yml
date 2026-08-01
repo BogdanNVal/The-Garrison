@@ -1,0 +1,29 @@
+version: '3.9' 
+
+services:
+  php-env:
+    build: . #path to dockerfile
+    volumes: 
+      - ./src:/var/www/html 
+    ports:
+      - 8080:80
+    environment:
+      - RECAPTCHA_SITE_KEY=${RECAPTCHA_SITE_KEY}
+      - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
+  
+  mysql_db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: test
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
