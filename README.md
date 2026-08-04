@@ -62,13 +62,6 @@ Un cont de admin implicit este creat automat la prima accesare a site-ului:
 Se recomanda schimbarea acestei parole imediat dupa primul login (direct din
 phpMyAdmin, folosind `password_hash()` din PHP pentru noua valoare).
 
-> **Ai deja o baza de date existenta** (proiectul a mai rulat inainte)?
-> `schema.sql` ruleaza automat doar la prima pornire a unui volum MySQL gol,
-> deci nu va adauga singur coloana noua `categorie` sau noul email de admin.
-> Ruleaza manual `db-init/migration_add_categorie.sql` din tab-ul SQL al
-> phpMyAdmin, si actualizeaza manual emailul admin-ului existent daca vrei
-> sa treci de la `admin@yummy.com` la `admin@garrison.com`.
-
 ## Decizii tehnice de retinut
 
 - Toate interogarile SQL folosesc **prepared statements**, ca sa evite
