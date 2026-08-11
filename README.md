@@ -1,101 +1,76 @@
-# The Garrison — Aplicatie web pentru restaurant
+The Garrison — Restaurant Web Application
 
-Aplicatie full-stack pentru un restaurant fictiv: prezentare meniu, sistem de
-rezervare a meselor, autentificare separata pentru clienti si administratori,
-si un panou de admin pentru gestionarea meniului (adaugare / editare / stergere
-produse cu upload de imagine).
+A full-stack application for a fictional restaurant: menu presentation, table reservation system, separate authentication for customers and administrators, and an admin panel for managing the menu (add / edit / delete products with image upload).
 
-## Screenshot-uri
+## Screenshots
 
-![Pagina principala](docs/screenshots/home.png)
+![Home page](docs/screenshots/home.png)
 ![Login](docs/screenshots/login.png)
-![Panou admin - meniu](docs/screenshots/admin.png)
-![Rezervare masa](docs/screenshots/rezervare.png)
+![Admin panel - menu](docs/screenshots/admin.png)
+![Table reservation](docs/screenshots/rezervare.png)
 
-## Functionalitati
 
-- **Autentificare & inregistrare** pentru clienti, cu sesiuni PHP si optiune
-  "Remember me" (token persistent, hash-uit, stocat in cookie).
-- **Autentificare separata pentru admin**, cu acces la un panou dedicat.
-- **Panou de admin**: adaugare, editare si stergere produse din meniu, pe
-  fiecare categorie (Starters, Breakfast, Lunch, Dinner), cu upload de imagine
-  si validare de format (jpg/png/jpeg).
-- **Meniul public** afiseaza doar produsele adaugate efectiv de admin, grupate
-  pe categorie — fara continut demo.
-- **Sistem de rezervari**: verifica automat daca exista o masa libera pentru
-  numarul de persoane si data ceruta, inainte de a confirma rezervarea.
-- **Cautare live (AJAX)** a rezervarilor existente, din panoul de admin.
-- **Protectie reCAPTCHA v2** pe formularul de login.
+## Features
 
-## Stack tehnic
+- **Authentication & registration** for customers, with PHP sessions and a "Remember me" option (persistent, hashed token, stored in a cookie).
+- **Separate admin authentication**, with access to a dedicated panel.
+- **Admin panel**: add, edit, and delete menu products, per category (Starters, Breakfast, Lunch, Dinner), with image upload and format validation (jpg/png/jpeg).
+- The **public menu** displays only the products actually added by the admin, grouped by category — no demo content.
+- **Reservation system**: automatically checks whether a table is available for the requested number of people and date before confirming the reservation.
+- **Live search (AJAX)** of existing reservations, from the admin panel.
+- **reCAPTCHA v2 protection** on the login form.
 
-- PHP 8.2 (Apache), MySQL, phpMyAdmin — orchestrate cu Docker Compose
-- mysqli cu prepared statements pentru toate interogarile catre baza de date
-- Parole hash-uite cu `password_hash()` / verificate cu `password_verify()`
-  (atat pentru clienti, cat si pentru admini)
-- Sesiuni PHP + cookie-uri semnate (SHA-256) pentru "remember me"
+## Tech stack
 
-## Rulare locala
+- PHP 8.2 (Apache), MySQL, phpMyAdmin — orchestrated with Docker Compose
+- mysqli with prepared statements for all database queries
+- Passwords hashed with `password_hash()` / verified with `password_verify()` (for both customers and admins)
+- PHP sessions + signed (SHA-256) cookies for "remember me"
 
-1. Copiaza `.env.example` in `.env` si completeaza cheile reCAPTCHA
-   (le obtii gratuit de la https://www.google.com/recaptcha/admin — sau lasa
-   campurile goale in dezvoltare locala, verificarea reCAPTCHA se dezactiveaza
-   automat daca nu sunt setate).
+## Running locally
 
-2. Porneste containerele:
+Copy `.env.example` to `.env` and fill in the reCAPTCHA keys (get them for free from https://www.google.com/recaptcha/admin — or leave the fields empty for local development; reCAPTCHA verification is automatically disabled if they're not set).
 
-   ```bash
-   docker-compose up --build
-   ```
+Start the containers:
 
-3. Acceseaza:
-   - Site: http://localhost:8080
-   - phpMyAdmin: http://localhost:8081 (user `root`, parola `toor`)
+```
+docker-compose up --build
+```
 
-Tabelele bazei de date se creeaza automat la prima pornire
-(`db-init/schema.sql`, rulat de containerul MySQL).
-Un cont de admin implicit este creat automat la prima accesare a site-ului:
+Access:
 
-- **Email:** `admin@garrison.com`
-- **Parola:** `admin123`
+- Site: http://localhost:8080
+- phpMyAdmin: http://localhost:8081 (user `root`, password `toor`)
 
-Se recomanda schimbarea acestei parole imediat dupa primul login (direct din
-phpMyAdmin, folosind `password_hash()` din PHP pentru noua valoare).
+The database tables are created automatically on first startup (`db-init/schema.sql`, run by the MySQL container). A default admin account is created automatically the first time the site is accessed:
 
-## Decizii tehnice de retinut
+- Email: `admin@garrison.com`
+- Password: `admin123`
 
-- Toate interogarile SQL folosesc **prepared statements**, ca sa evite
-  SQL injection — inclusiv formularul de cautare live, care primeste input
-  direct de la utilizator.
-- Parolele nu sunt niciodata stocate in clar; se foloseste `password_hash()`
-  cu algoritmul implicit al PHP (bcrypt), atat pentru clienti cat si pentru
-  administratori.
-- Cheile secrete (reCAPTCHA) nu sunt hard-codate in cod — se citesc din
-  variabile de mediu, injectate de Docker Compose dintr-un fisier `.env`
-  local, care nu e urcat pe git.
-- Schema bazei de date e versionata in repo (`db-init/schema.sql`), astfel
-  incat proiectul sa poata fi clonat si pornit de la zero fara pasi manuali
-  de configurare a bazei de date.
+It's recommended to change this password immediately after the first login (directly from phpMyAdmin, using PHP's `password_hash()` for the new value).
 
-## Structura proiectului
+## Technical decisions worth noting
+
+- All SQL queries use prepared statements to prevent SQL injection — including the live search form, which receives input directly from the user.
+- Passwords are never stored in plain text; `password_hash()` is used with PHP's default algorithm (bcrypt), for both customers and administrators.
+- Secret keys (reCAPTCHA) are not hard-coded in the source — they're read from environment variables, injected by Docker Compose from a local `.env` file, which is not committed to git.
+- The database schema is versioned in the repo (`db-init/schema.sql`), so the project can be cloned and started from scratch without any manual database setup steps.
+
+## Project structure
 
 ```
 src/
-  index.php, login.php, signup.php   -> pagini publice / autentificare
-  secure.php                          -> panou admin (listare meniu)
-  add.php, update.php, delete.php     -> CRUD meniu (doar admin)
-  rezervare.php                       -> formular rezervare masa
-  search.php, livesearch.php          -> cautare live rezervari (admin)
-  function.php                        -> helpere sesiune / remember-me
-  dbconnection.php                    -> conexiune DB + seed admin implicit
-  assets/clase/                       -> clasele Mancare si Rezervare
-db-init/schema.sql                    -> schema bazei de date (auto-rulata)
-db-init/migration_add_categorie.sql   -> migrare manuala pt. baze de date existente
-docker-compose.yml, Dockerfile        -> orchestrare containere
+  index.php, login.php, signup.php   -> public pages / authentication
+  secure.php                          -> admin panel (menu listing)
+  add.php, update.php, delete.php     -> menu CRUD (admin only)
+  rezervare.php                       -> table reservation form
+  search.php, livesearch.php          -> live reservation search (admin)
+  function.php                        -> session / remember-me helpers
+  dbconnection.php                    -> DB connection + default admin seed
+  assets/clase/                       -> Mancare and Rezervare classes
+db-init/schema.sql                    -> database schema (auto-run)
+db-init/migration_add_categorie.sql   -> manual migration for existing databases
+docker-compose.yml, Dockerfile        -> container orchestration
 ```
 
-Produsele din meniu apartin uneia dintre categoriile `starters`, `breakfast`,
-`lunch`, `dinner` (coloana `categorie` din tabelul `meniu`). Formularele de
-adaugare/editare din panoul de admin includ un selector de categorie, iar atat
-panoul de admin cat si meniul public afiseaza produsele grupate corect pe
-fiecare categorie.
+Menu products belong to one of the categories starters, breakfast, lunch, dinner (the `categorie` column in the `meniu` table). The add/edit forms in the admin panel include a category selector, and both the admin panel and the public menu display products correctly grouped by category.
