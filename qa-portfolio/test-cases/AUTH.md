@@ -23,3 +23,7 @@ App: The Garrison (current main)
 | AUTH-17 | Admin wins if email exists in both tables | Same email in admins and users (if you can set that up) | Log in with that email | Goes to admin panel | Low | Boundary |
 | AUTH-18 | Failed login email field behavior | On login page | Fail login with a typed email | Note actual behavior (kept vs cleared) | Low | UX |
 | AUTH-19 | Signup name escaped after failed validation | On signup page | Name `"><img src=x onerror=alert(1)>`, invalid email | Value escaped in HTML (no attribute breakout) | High | Security |
+| AUTH-20 | Remember-me cookie is HttpOnly | Login with Remember me | Inspect `Set-Cookie` | `HttpOnly` present (ideally also `SameSite`) | High | Security |
+| AUTH-21 | Login without Remember me clears stored token | Prior remember login | Login again without checkbox; reuse old cookie | Old cookie must **not** restore session; DB token cleared | High | Security |
+| AUTH-22 | Logout is not forgeable via GET alone | Logged in | Cross-site GET `/logout.php` (or no CSRF token) | Should not silently destroy session without user intent / token | Med | Security |
+| AUTH-23 | Password trailing spaces not silently trimmed | Signup/login | Password `abcdef ` then login `abcdef` | Either both require the space, or signup rejects trailing space | Med | Boundary |

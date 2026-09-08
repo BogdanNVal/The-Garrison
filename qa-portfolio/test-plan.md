@@ -60,9 +60,17 @@ Keep reCAPTCHA keys empty in `.env` locally, or login will fail the captcha chec
 |------|----------------|------------|
 | Older clones were missing UI includes | Hard to even open pages | Confirmed `src/components/` + assets are on current main (BUG-008 fixed) |
 | Docker DB connection issues on some setups | Can’t test anything | Documented workaround under `docker/` |
-| Same remember-me cookie for admin and user | Wrong role after reopen | Covered in auth cases |
+| Same remember-me cookie for admin and user | Wrong role after reopen | Covered in auth cases; filed BUG-015 |
 | Default admin password | Bad if env is shared | Noted in README; change it if you deploy |
 | Fixes on main may regress | Old bugs coming back | Retested BUG-001…008 against this build |
+| Upload / price edge cases | Bad data in menu | Second pass → BUG-011…014 |
+| Reservation concurrency | Double-book same table/date | Tried parallel POSTs; **not reproduced** on this build (no unique constraint still — RES-14) |
+| Best-fit table assignment | Wasting large tables | Not reproduced on default `mese` PK order |
+
+## Second pass (deeper hunt)
+
+Confirmed open on current main: BUG-009, BUG-010, BUG-011…018.  
+Attempted but not filed: reservation race under parallel curl; table “waste” assignment (seed order picks small tables first).
 
 ## Tools
 

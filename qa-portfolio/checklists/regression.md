@@ -54,4 +54,17 @@ Use after fixes or bigger changes. Case IDs are in `test-cases/`.
 | 26 | Add form shows backend errors | BUG-007 | ☐ | ☐ |
 | 27 | Fresh clone runs without missing includes | BUG-008 | ☐ | ☐ |
 
+## Second-pass findings (current main)
+
+| # | Check | Cases / bugs | Pass | Fail |
+|---|-------|--------------|------|------|
+| 28 | Non-numeric price not stored as 0 | MENU-18, BUG-011 | ☐ | ☐ |
+| 29 | Update page escapes stored name/desc/image | MENU-19, BUG-012 | ☐ | ☐ |
+| 30 | Upload cannot overwrite `menu-item-*.png` | MENU-20, BUG-013 | ☐ | ☐ |
+| 31 | Fake `.png` text file rejected | MENU-21, BUG-014 | ☐ | ☐ |
+| 32 | Remember-me HttpOnly + token cleared | AUTH-20–21, BUG-015 | ☐ | ☐ |
+| 33 | Non-integer party size rejected | RES-13, BUG-016 | ☐ | ☐ |
+| 34 | Admin → /rezervare.php behavior | RES-12, BUG-017 | ☐ | ☐ |
+| 35 | CSRF / GET logout awareness | AUTH-22, BUG-018 | ☐ | ☐ |
+
 Signed: _____________  Date: _____________

@@ -21,3 +21,7 @@ App: The Garrison (current main)
 | MENU-15 | Public menu shows only DB items | Products in DB | Open public menu section | Only DB products; escaped output | Med | Positive |
 | MENU-16 | Admin error messages on add failure | Force DB/class error if possible | Submit add | User-visible error (not silent fail) | Med | Negative |
 | MENU-17 | Add form escapes re-displayed fields | Admin on add form | Submit invalid price with name containing `"><img…>` | Name/description attributes escaped; no markup breakout | High | Security |
+| MENU-18 | Reject non-numeric price | Admin on add form | Price `abc` or `12abc` via bypass of `type=number` | Validation error; **item must not be saved** (incl. not as `0.00`) | High | Negative |
+| MENU-19 | Update form escapes stored fields | Admin; product name contains HTML | Open `/update.php?id=…` | Attributes escaped; no XSS breakout | High | Security |
+| MENU-20 | Upload does not overwrite existing files | Admin | Upload image named `menu-item-1.png` | Unique stored path; seed file unchanged | High | Negative |
+| MENU-21 | Reject non-image content | Admin | Upload text file renamed `.png` | Rejected; not stored as menu image | Med | Negative |

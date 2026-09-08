@@ -15,4 +15,6 @@ App: The Garrison (current main)
 | RES-09 | Picks a table big enough | Customer | Book for 3 people | Assigned table seats ≥ 3 | Med | Positive |
 | RES-10 | Saves the logged-in name | Customer named “QA Tester” | Book successfully | Reservation name is QA Tester | Med | Positive |
 | RES-11 | Guest sent to login | Logged out | Open /rezervare.php | Redirect to login | High | Negative |
-| RES-12 | What happens if admin opens reservation page | Admin logged in | Open /rezervare.php | Note actual behavior (redirect / form / error) | Low | UX |
+| RES-12 | What happens if admin opens reservation page | Admin logged in | Open /rezervare.php | Clear behavior (form or message) — not silent bounce to admin | Low | UX |
+| RES-13 | Reject non-integer party size | Customer | POST `nr_persoane=2.5` or `2abc` with future date | Validation error; **no DB insert** | High | Negative |
+| RES-14 | Concurrent bookings same table/date | Two customers; one free fitting table | Parallel POSTs same date/size | At most one row per `(id_masa, data_rezervare)` | Med | Negative |
