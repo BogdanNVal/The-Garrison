@@ -20,12 +20,11 @@ if (!is_admin_logged_in()) {
   $error = false; 
   $err_msg = "";
 
-
-
-
-  if (isset($_GET['id'])){
-    $id = $_GET['id'];
+  if (!isset($_GET['id']) || !ctype_digit((string)$_GET['id'])) {
+    header("Location: secure.php");
+    exit();
   }
+  $id = (int)$_GET['id'];
   require 'assets/clase/Mancare.php';
   $mancare= new Mancare($id);
   $mancare->get();
@@ -33,13 +32,14 @@ if (!is_admin_logged_in()) {
   if (isset($_POST['submit'])){
       
       
-    $nume = trim($_POST['nume']);
-    $pret=$_POST['pret'];
-    $descriere=trim($_POST['descriere']);
+    $nume = request_string('nume');
+    $pret = request_string('pret');
+    $descriere = request_string('descriere');
     $categorie = in_array($_POST['categorie'] ?? '', Mancare::CATEGORII_VALIDE, true) ? $_POST['categorie'] : $mancare->categorie;
     $targetDir = "assets/img/menu/";
-    $imagine = $targetDir . basename($_FILES['file']['name']);
-    $imageFileType = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+    $fileName = (isset($_FILES['file']['name']) && is_string($_FILES['file']['name'])) ? basename($_FILES['file']['name']) : '';
+    $imagine = $targetDir . $fileName;
+    $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
       
     if ($nume ==""){
       $nume_err = "Adauga nume";
@@ -106,14 +106,15 @@ include("components/header.php");
 <section class="sample-page">
   <div class="container" data-aos="fade-up">
 
-  <div class="position-absolute top-20 start-50" >
+  <div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
     <div><h1>Update</h1></div>
       <div class="err-msg">
           
   
-          <?php if (!empty($error_msg)){ ?>
+          <?php if (!empty($err_msg)){ ?>
               <div class="alert alert-danger">
-                  <?= $error_msg?>
+                  <?= htmlspecialchars($err_msg) ?>
               </div>
           <?php } ?>
   
@@ -208,8 +209,7 @@ include("components/header.php");
           
       </form>
   </div>
-
-
+  </div>
 
   </div>
 </section>

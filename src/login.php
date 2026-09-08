@@ -29,8 +29,8 @@ $error_msg = "";
 $remember = "";
 
 if (isset($_POST['submit'])) {
-    $email = trim($_POST['email']);
-    $pwd = trim($_POST['pwd']);
+    $email = request_string('email');
+    $pwd = request_string('pwd');
 
     if (isset($_POST['remember'])) {
         $remember = $_POST['remember'];
@@ -227,9 +227,11 @@ include("components/header.php");
                         
                     />Remember Me
                 </div>
+                <?php if (getenv('RECAPTCHA_SITE_KEY')) { ?>
                 <div class="form-group">
                 <div class="g-recaptcha" data-sitekey="<?= htmlspecialchars(getenv('RECAPTCHA_SITE_KEY')) ?>"></div>
                 </div>
+                <?php } ?>
                 
                 <div class="reg-button text-center mt-3">
                     <button

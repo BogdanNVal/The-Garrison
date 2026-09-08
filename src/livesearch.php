@@ -1,8 +1,19 @@
 <?php
+session_start();
+require 'function.php';
+include 'dbconnection.php';
+
+admin_check_remember_me($conn);
+
+if (!is_admin_logged_in()) {
+  http_response_code(403);
+  echo "<h6 class='text-danger text-center mt-3'>FORBIDDEN</h6>";
+  exit;
+}
+
 require 'assets/clase/rezervare_masa.php';
 
-require 'dbconnection.php';
-$input = trim($_POST['input']);
+$input = request_string('input');
 
 $result = null;
 if ($input != "") {
@@ -36,11 +47,11 @@ if ($result && mysqli_num_rows($result) > 0) {
       $masa_rezervara = $row["id_masa"];
     ?>
     <tr>
-      <td><?php echo $id; ?></td>
-      <td><?php echo $nume_rezervare; ?></td>
-      <td><?php echo $nr_persoane; ?></td>
-      <td><?php echo $data_rezervare; ?></td>
-      <td><?php echo $masa_rezervara; ?></td>
+      <td><?php echo htmlspecialchars((string)$id); ?></td>
+      <td><?php echo htmlspecialchars((string)$nume_rezervare); ?></td>
+      <td><?php echo htmlspecialchars((string)$nr_persoane); ?></td>
+      <td><?php echo htmlspecialchars((string)$data_rezervare); ?></td>
+      <td><?php echo htmlspecialchars((string)$masa_rezervara); ?></td>
     </tr>
     <?php
     }

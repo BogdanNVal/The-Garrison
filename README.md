@@ -1,6 +1,8 @@
-The Garrison — Restaurant Web Application
+# The Garrison
 
-A full-stack application for a fictional restaurant: menu presentation, table reservation system, separate authentication for customers and administrators, and an admin panel for managing the menu (add / edit / delete products with image upload).
+Restaurant web app built as a school / portfolio project. Customers can browse the menu, create an account, and book a table. Admins get a separate login and a small panel to manage menu items (add, edit, delete, with image upload).
+
+The front end uses the free [Yummy](https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/) template from BootstrapMade. The backend is custom PHP and MySQL. The footer still credits BootstrapMade, as required by their [free license](https://bootstrapmade.com/license/).
 
 ## Screenshots
 
@@ -9,68 +11,72 @@ A full-stack application for a fictional restaurant: menu presentation, table re
 ![Admin panel - menu](docs/screenshots/admin.png)
 ![Table reservation](docs/screenshots/rezervare.png)
 
+## What it does
 
-## Features
+- Customer signup / login with PHP sessions and an optional “Remember me” cookie (token is hashed before storage)
+- Separate admin login and admin-only pages
+- Menu CRUD by category (starters, breakfast, lunch, dinner), including jpg/png/jpeg image checks
+- Public menu is loaded from the database and grouped by category
+- Table reservations that check availability for the party size and date (past dates are rejected)
+- Admin live search over reservations (AJAX; requires an admin session)
+- Optional reCAPTCHA v2 on the login form
 
-- **Authentication & registration** for customers, with PHP sessions and a "Remember me" option (persistent, hashed token, stored in a cookie).
-- **Separate admin authentication**, with access to a dedicated panel.
-- **Admin panel**: add, edit, and delete menu products, per category (Starters, Breakfast, Lunch, Dinner), with image upload and format validation (jpg/png/jpeg).
-- The **public menu** displays only the products actually added by the admin, grouped by category — no demo content.
-- **Reservation system**: automatically checks whether a table is available for the requested number of people and date before confirming the reservation.
-- **Live search (AJAX)** of existing reservations, from the admin panel.
-- **reCAPTCHA v2 protection** on the login form.
+## Stack
 
-## Tech stack
-
-- PHP 8.2 (Apache), MySQL, phpMyAdmin — orchestrated with Docker Compose
-- mysqli with prepared statements for all database queries
-- Passwords hashed with `password_hash()` / verified with `password_verify()` (for both customers and admins)
-- PHP sessions + signed (SHA-256) cookies for "remember me"
+- PHP 8.2 on Apache, MySQL 8, phpMyAdmin, all started with Docker Compose
+- `mysqli` prepared statements for queries
+- Passwords hashed with `password_hash()` / checked with `password_verify()`
+- Sessions plus SHA-256 hashed remember-me cookies
+- reCAPTCHA keys come from env vars (`.env`), not from the source tree
 
 ## Running locally
 
-Copy `.env.example` to `.env` and fill in the reCAPTCHA keys (get them for free from https://www.google.com/recaptcha/admin — or leave the fields empty for local development; reCAPTCHA verification is automatically disabled if they're not set).
+1. Copy `.env.example` to `.env`.
+2. Put real reCAPTCHA keys in `.env` if you want the captcha on, or leave the values empty for local work (verification is skipped when the secret is missing).
+3. Start the stack:
 
-Start the containers:
-
+```bash
+docker compose up --build
 ```
-docker-compose up --build
-```
 
-Access:
+Then open:
 
-- Site: http://localhost:8080
-- phpMyAdmin: http://localhost:8081 (user `root`, password `toor`)
+- App: http://localhost:8080
+- phpMyAdmin: http://localhost:8081 (`root` / `toor`)
 
-The database tables are created automatically on first startup (`db-init/schema.sql`, run by the MySQL container). A default admin account is created automatically the first time the site is accessed:
+On first MySQL start, `db-init/schema.sql` creates the tables and a few sample starters so the public menu is not empty. The first HTTP hit also seeds a default admin if the `admins` table is empty:
 
 - Email: `admin@garrison.com`
 - Password: `admin123`
 
-It's recommended to change this password immediately after the first login (directly from phpMyAdmin, using PHP's `password_hash()` for the new value).
+Change that password after you log in. Easiest path locally is phpMyAdmin with a new hash from PHP’s `password_hash()`.
 
-## Technical decisions worth noting
+If image uploads fail under Docker, make the upload folder writable on the host, for example:
 
-- All SQL queries use prepared statements to prevent SQL injection — including the live search form, which receives input directly from the user.
-- Passwords are never stored in plain text; `password_hash()` is used with PHP's default algorithm (bcrypt), for both customers and administrators.
-- Secret keys (reCAPTCHA) are not hard-coded in the source — they're read from environment variables, injected by Docker Compose from a local `.env` file, which is not committed to git.
-- The database schema is versioned in the repo (`db-init/schema.sql`), so the project can be cloned and started from scratch without any manual database setup steps.
+```bash
+chmod 777 src/assets/img/menu
+```
 
-## Project structure
+## Project layout
 
 ```
 src/
-  index.php, login.php, signup.php   -> public pages / authentication
-  secure.php                          -> admin panel (menu listing)
-  add.php, update.php, delete.php     -> menu CRUD (admin only)
-  rezervare.php                       -> table reservation form
-  search.php, livesearch.php          -> live reservation search (admin)
-  function.php                        -> session / remember-me helpers
-  dbconnection.php                    -> DB connection + default admin seed
-  assets/clase/                       -> Mancare and Rezervare classes
-db-init/schema.sql                    -> database schema (auto-run)
-db-init/migration_add_categorie.sql   -> manual migration for existing databases
-docker-compose.yml, Dockerfile        -> container orchestration
+  index.php, login.php, signup.php   public site and auth
+  secure.php                         admin menu list
+  add.php, update.php, delete.php    menu CRUD (admin)
+  rezervare.php                      table booking
+  search.php, livesearch.php         reservation search (admin)
+  function.php                       session / remember-me helpers
+  dbconnection.php                   DB connection + default admin seed
+  components/                        page sections (Yummy-based)
+  assets/clase/                      Mancare and Rezervare classes
+  assets/{css,js,vendor,img}/        front-end assets
+db-init/schema.sql                   schema + seed data (auto-run)
+docker-compose.yml, Dockerfile       containers
 ```
 
-Menu products belong to one of the categories starters, breakfast, lunch, dinner (the `categorie` column in the `meniu` table). The add/edit forms in the admin panel include a category selector, and both the admin panel and the public menu display products correctly grouped by category.
+Menu rows use a `categorie` enum (`starters`, `breakfast`, `lunch`, `dinner`). The admin forms expose that as a select, and both the admin list and the public menu group items the same way.
+
+## Notes
+
+Prepared statements are used across the app, including the live search endpoint. Secrets stay in `.env` (gitignored) and are passed into the PHP container by Compose. After a fresh clone you should not need manual SQL setup beyond what Docker runs from `db-init/`.

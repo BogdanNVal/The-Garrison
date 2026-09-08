@@ -29,7 +29,7 @@ class Rezervare {
   public function masa_libera()
   { 
    
-    require 'dbconnection.php';
+    require __DIR__ . '/../../dbconnection.php';
     $sql = "SELECT * FROM mese WHERE nr_persoane >= ?";
     try {
       $stmt = $conn->prepare($sql);
@@ -61,7 +61,7 @@ class Rezervare {
   function verifica_data($id_masa) {
    
     $this->error="";
-     require 'dbconnection.php';
+     require __DIR__ . '/../../dbconnection.php';
     $sql = "SELECT * FROM rezervari WHERE id_masa = ?";
     try {
       $stmt = $conn->prepare($sql);
@@ -86,7 +86,7 @@ class Rezervare {
 
   function adauga_rezervare() {
     $id=-1;
-    require 'dbconnection.php';
+    require __DIR__ . '/../../dbconnection.php';
 
     $sql = "INSERT INTO rezervari (nume, data_rezervare,nr_persoane	, id_masa) VALUE (?, ?, ?, ?)";
     try{

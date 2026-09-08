@@ -13,7 +13,6 @@ if (!is_admin_logged_in()) {
     die;
 }
 
-// Etichete de afisat pentru fiecare categorie
 $categorii = [
     'starters'  => 'Starters',
     'breakfast' => 'Breakfast',
@@ -36,7 +35,7 @@ include("components/header.php");
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="text text-center">ADMIN</h1>
      
-          <a href="search.php" class="btn-book-a-table">Verifica rezevari</a>
+          <a href="search.php" class="btn-book-a-table">Verifica rezervari</a>
         
         </div>
 
@@ -52,8 +51,8 @@ include("components/header.php");
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Our Menu</h2>
-          <p>Check Our <span>The Garrison Menu</span></p>
+          <h2>Menu</h2>
+          <p>Admin <span>Menu</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -92,17 +91,17 @@ include("components/header.php");
           ?>
 
           <div class="col-lg-4 menu-item">
-            <a href="<?php echo $row['imagine']?>" class="glightbox"><img src="<?php echo $row['imagine']?>" class="menu-img img-fluid" alt=""></a>
-            <h4><?php echo $row['nume'];?></h4>
+            <a href="<?= htmlspecialchars($row['imagine']) ?>" class="glightbox"><img src="<?= htmlspecialchars($row['imagine']) ?>" class="menu-img img-fluid" alt="<?= htmlspecialchars($row['nume']) ?>"></a>
+            <h4><?= htmlspecialchars($row['nume']) ?></h4>
             <p class="ingredients">
-            <?php echo $row['descriere'];?>
+            <?= htmlspecialchars($row['descriere']) ?>
             </p>
             <p class="price">
-              $<?php echo $row['pret'];?>
+              $<?= htmlspecialchars((string)$row['pret']) ?>
             </p>
 
-            <a href="update.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Update</a>
-            <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
+            <a href="update.php?id=<?= (int)$row['id'] ?>" class="btn btn-success">Update</a>
+            <a href="delete.php?id=<?= (int)$row['id'] ?>" class="btn btn-danger">Delete</a>
           </div><!-- Menu Item -->
 
           <?php } ?>
@@ -110,7 +109,7 @@ include("components/header.php");
           </div>
 
           <div class="d-flex justify-content-center mt-4">
-          <a href="add.php?categorie=<?= $slug ?>" class="btn btn-primary">Add la <?= $label ?></a>
+          <a href="add.php?categorie=<?= htmlspecialchars($slug) ?>" class="btn btn-primary">Adauga la <?= htmlspecialchars($label) ?></a>
           </div>
 
         </div><!-- End <?= $label ?> Menu Content -->

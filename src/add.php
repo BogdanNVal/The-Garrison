@@ -20,7 +20,7 @@ if (!is_admin_logged_in()) {
   $categorii_disponibile = Mancare::CATEGORII_VALIDE;
 
   $nume = $descriere = $imagine = "";
-  // Categoria vine preselectata daca vii de pe secure.php cu ?categorie=..., altfel implicit "starters"
+  // Optional ?categorie= from secure.php; default starters.
   $categorie = (isset($_GET['categorie']) && in_array($_GET['categorie'], $categorii_disponibile, true))
       ? $_GET['categorie']
       : "starters";
@@ -30,13 +30,14 @@ if (!is_admin_logged_in()) {
   
   if (isset($_POST['submit'])){
       
-      $nume = trim($_POST['nume']);
-      $pret=$_POST['pret'];
-      $descriere=trim($_POST['descriere']);
+      $nume = request_string('nume');
+      $pret = request_string('pret');
+      $descriere = request_string('descriere');
       $categorie = in_array($_POST['categorie'] ?? '', $categorii_disponibile, true) ? $_POST['categorie'] : "starters";
       $targetDir="assets/img/menu/";
-      $imagine=$targetDir.basename($_FILES['file']['name']);
-      $imageFileType = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+      $fileName = (isset($_FILES['file']['name']) && is_string($_FILES['file']['name'])) ? basename($_FILES['file']['name']) : '';
+      $imagine=$targetDir.$fileName;
+      $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
        
     
  
@@ -46,7 +47,7 @@ if (!is_admin_logged_in()) {
       }
       if ($pret <= 0){
         $pret_err = "Adauga un pret corect";
-
+        $error = true;
       }
 
       if ($descriere == ""){
@@ -78,10 +79,11 @@ if (!is_admin_logged_in()) {
                     header("Location: secure.php");
                     exit();
                 }
-                else
-                $err_msg=$mancare->error;
-        
-  
+                else {
+                  $err_msg=$mancare->error;
+                }
+            } else {
+                $err_msg = "Nu s-a putut salva imaginea. Verifica permisiunile folderului assets/img/menu/";
             }
         }
 
@@ -108,16 +110,15 @@ if (!is_admin_logged_in()) {
 <section class="sample-page">
   <div class="container" data-aos="fade-up">
 
-
- 
-  <div class="position-absolute top-20 start-50" >
+  <div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
     <div><h1>Adaugare</h1></div>
       <div class="err-msg">
           
   
-          <?php if (!empty($error_msg)){ ?>
+          <?php if (!empty($err_msg)){ ?>
               <div class="alert alert-danger">
-                  <?= $error_msg?>
+                  <?= htmlspecialchars($err_msg) ?>
               </div>
           <?php } ?>
   
@@ -209,8 +210,7 @@ if (!is_admin_logged_in()) {
           
       </form>
   </div>
-
-    
+  </div>
 
   </div>
 </section>

@@ -24,8 +24,8 @@ if (!is_logged_in()) {
 
 
 
-   $nr_persoane = trim($_POST['nr_persoane']);
-   $data_rezervare=$_POST['data_rezervare'];
+   $nr_persoane = request_string('nr_persoane');
+   $data_rezervare = request_string('data_rezervare');
 
   if ($nr_persoane <= 0){
     $nr_persoane_err = "Alegeti un numar de persoane";
@@ -43,10 +43,13 @@ if (!is_logged_in()) {
     if ($data_rezervare == ""){
       $data_rezervare_err = "Alegeti o data";
       $error = true;
+  } elseif (strtotime($data_rezervare) < strtotime(date('Y-m-d'))) {
+      $data_rezervare_err = "Nu puteti rezerva o data din trecut";
+      $error = true;
   }
   if (!$error){
     require 'assets/clase/rezervare_masa.php';
-      $rezervare= new Rezervare($_POST['nr_persoane'],$_SESSION['name'],$data_rezervare);
+      $rezervare= new Rezervare($nr_persoane, $_SESSION['name'], $data_rezervare);
       $rezervare->verifica_rezervare();
       if(empty($rezervare->error)){
        
@@ -88,7 +91,8 @@ if (!is_logged_in()) {
 
   
   
-  <div class="position-absolute top-20 start-50" >
+  <div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
     <div class=" mb-3"><h1>Rezervare</h1></div>
     <div class="col-lg-4">
             <svg width="200" height="200" viewBox="-100 -100 200 200">
@@ -113,9 +117,9 @@ if (!is_logged_in()) {
               
       
               <?php if (!empty($error_msg)){ ?>
-                  <div class="alert alert-danger">
-                      <?= $error_msg?>
-                  </div>
+                      <div class="alert alert-danger">
+                      <?= htmlspecialchars($error_msg) ?>
+                      </div>
               <?php } ?>
       
 
@@ -132,11 +136,11 @@ if (!is_logged_in()) {
                   name="nr_persoane"
                   id="nr_persoane"
                   placeholder="Numar persoane"
-                  value="<?=$nr_persoane?>"
-
-                 
+                  min="1"
+                  max="6"
+                  value="<?= htmlspecialchars((string)$nr_persoane) ?>"
               />
-              <div class="input-err text-danger"><?= $nr_persoane_err?></div>
+              <div class="input-err text-danger"><?= htmlspecialchars($nr_persoane_err) ?></div>
              
               
           </div>
@@ -147,11 +151,10 @@ if (!is_logged_in()) {
                  class="form-control"
                   name="data_rezervare"
                   id="data_rezervare"
-                  value="<?=$data_rezervare?>"
-          
-                 
+                  min="<?= date('Y-m-d') ?>"
+                  value="<?= htmlspecialchars($data_rezervare) ?>"
               />
-              <div class="input-err text-danger"><?= $data_rezervare_err?></div>
+              <div class="input-err text-danger"><?= htmlspecialchars($data_rezervare_err) ?></div>
              
               
           </div>
@@ -170,8 +173,7 @@ if (!is_logged_in()) {
           
       </form>
   </div>
-
-    
+  </div>
 
   </div>
 </section>

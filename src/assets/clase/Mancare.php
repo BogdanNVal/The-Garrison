@@ -10,7 +10,6 @@ class Mancare  {
 
     public $error;
 
-    // Categoriile permise pentru un produs din meniu.
     const CATEGORII_VALIDE = ['starters', 'breakfast', 'lunch', 'dinner'];
 
     public function __construct($id) {
@@ -33,7 +32,7 @@ class Mancare  {
     }
 
       public function get() {
-        require 'dbconnection.php';
+        require __DIR__ . '/../../dbconnection.php';
         $sql = "SELECT * FROM meniu WHERE id = ?";
         try {
           $stmt = $conn->prepare($sql);
@@ -59,25 +58,28 @@ class Mancare  {
     
     }
 
-    // Returneaza toate produsele dintr-o categorie (folosit pe pagina publica si in panoul de admin).
     public static function get_by_categorie($conn, $categorie) {
       if (!in_array($categorie, self::CATEGORII_VALIDE, true)) {
         return [];
       }
-      $sql = "SELECT * FROM meniu WHERE categorie = ? ORDER BY id DESC";
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param("s", $categorie);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      $rows = [];
-      while ($row = $result->fetch_assoc()) {
-        $rows[] = $row;
+      try {
+        $sql = "SELECT * FROM meniu WHERE categorie = ? ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $categorie);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = [];
+        while ($row = $result->fetch_assoc()) {
+          $rows[] = $row;
+        }
+        return $rows;
+      } catch (Throwable $e) {
+        return [];
       }
-      return $rows;
     }
 
     public function update() {
-      require 'dbconnection.php';
+      require __DIR__ . '/../../dbconnection.php';
       $sql = "UPDATE meniu SET nume=?, pret=?, descriere=?, imagine=?, categorie=? WHERE id=?";
       try{
           $stmt = $conn->prepare($sql);
@@ -93,7 +95,7 @@ class Mancare  {
   }
 
   public function delete() {
-    require 'dbconnection.php';
+    require __DIR__ . '/../../dbconnection.php';
     $sql = "DELETE FROM meniu WHERE id = ?";
     try {
         $stmt = $conn->prepare($sql);
@@ -109,7 +111,7 @@ class Mancare  {
 }
 
 public function add() {
-  require 'dbconnection.php';
+  require __DIR__ . '/../../dbconnection.php';
   $sql = "INSERT INTO meniu (nume, pret, descriere, imagine, categorie) VALUES (?, ?, ?, ?, ?)";
           try{
               $stmt = $conn->prepare($sql);
