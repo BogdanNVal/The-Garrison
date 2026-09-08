@@ -111,9 +111,9 @@ include("components/header.php");
       <div class="err-msg">
           
   
-          <?php if (!empty($error_msg)){ ?>
+          <?php if (!empty($err_msg)){ ?>
               <div class="alert alert-danger">
-                  <?= $error_msg?>
+                  <?= htmlspecialchars($err_msg) ?>
               </div>
           <?php } ?>
   

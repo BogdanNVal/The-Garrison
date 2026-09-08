@@ -43,6 +43,9 @@ if (!is_logged_in()) {
     if ($data_rezervare == ""){
       $data_rezervare_err = "Alegeti o data";
       $error = true;
+  } elseif (strtotime($data_rezervare) < strtotime(date('Y-m-d'))) {
+      $data_rezervare_err = "Nu puteti rezerva o data din trecut";
+      $error = true;
   }
   if (!$error){
     require 'assets/clase/rezervare_masa.php';

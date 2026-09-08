@@ -1,8 +1,8 @@
 <?php
-$host = "mysql_db";
-$uid = "root";
-$pwd = "toor";
-$dbname = "test";
+$host = getenv('DB_HOST') ?: 'mysql_db';
+$uid = getenv('DB_USER') ?: 'root';
+$pwd = getenv('DB_PASSWORD') ?: 'toor';
+$dbname = getenv('DB_NAME') ?: 'test';
 $conn = new mysqli($host, $uid, $pwd, $dbname);
 
 if ($conn->connect_error)

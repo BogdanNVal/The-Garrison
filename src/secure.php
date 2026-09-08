@@ -36,7 +36,7 @@ include("components/header.php");
         <div class="d-flex justify-content-between align-items-center">
           <h1 class="text text-center">ADMIN</h1>
      
-          <a href="search.php" class="btn-book-a-table">Verifica rezevari</a>
+          <a href="search.php" class="btn-book-a-table">Verifica rezervari</a>
         
         </div>
 

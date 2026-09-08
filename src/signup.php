@@ -93,16 +93,16 @@ else
               $name = $email ="";
           }
           catch(Exception $e){
-              $error_msg = $e->getMessage();
+              $err_msg = $e->getMessage();
           }
   
       }
   }
 
-  include("components/header.php")
-
+  include("components/header.php");
   ?>
-  
+
+  <main id="main">
    <!-- ======= Breadcrumbs ======= -->
    <div class="breadcrumbs">
       <div class="container">
@@ -130,9 +130,9 @@ else
               </div>
           <?php } ?>
   
-          <?php if (!empty($error_msg)){ ?>
+          <?php if (!empty($err_msg)){ ?>
               <div class="alert alert-danger">
-                  <?= $error_msg?>
+                  <?= htmlspecialchars($err_msg) ?>
               </div>
           <?php } ?>
   
@@ -146,9 +146,9 @@ else
                   name="name"
                   id="name"
                   placeholder="Enter Name"
-                  value="<?=$name?>"
+                  value="<?= htmlspecialchars($name) ?>"
               />
-              <div class="input-err text-danger"><?= $name_err?></div>
+              <div class="input-err text-danger"><?= htmlspecialchars($name_err) ?></div>
               
           </div>
   
@@ -160,9 +160,9 @@ else
                   name="email"
                   id="email"
                   placeholder="Enter email"
-                  value="<?=$email?>"
+                  value="<?= htmlspecialchars($email) ?>"
               />
-              <div class="input-err text-danger"><?= $email_err?></div>
+              <div class="input-err text-danger"><?= htmlspecialchars($email_err) ?></div>
               
           </div>
   

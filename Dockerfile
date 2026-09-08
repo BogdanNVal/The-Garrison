@@ -8,3 +8,8 @@ RUN apt-get update \
     # configure the GD extension to include support for JPEG and PNG image formats
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
+
+# Ensure menu upload directory exists and is writable by Apache
+RUN mkdir -p /var/www/html/assets/img/menu \
+    && chown -R www-data:www-data /var/www/html/assets/img/menu \
+    && chmod 775 /var/www/html/assets/img/menu

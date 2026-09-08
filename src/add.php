@@ -46,7 +46,7 @@ if (!is_admin_logged_in()) {
       }
       if ($pret <= 0){
         $pret_err = "Adauga un pret corect";
-
+        $error = true;
       }
 
       if ($descriere == ""){
@@ -78,10 +78,11 @@ if (!is_admin_logged_in()) {
                     header("Location: secure.php");
                     exit();
                 }
-                else
-                $err_msg=$mancare->error;
-        
-  
+                else {
+                  $err_msg=$mancare->error;
+                }
+            } else {
+                $err_msg = "Nu s-a putut salva imaginea. Verifica permisiunile folderului assets/img/menu/";
             }
         }
 
@@ -115,9 +116,9 @@ if (!is_admin_logged_in()) {
       <div class="err-msg">
           
   
-          <?php if (!empty($error_msg)){ ?>
+          <?php if (!empty($err_msg)){ ?>
               <div class="alert alert-danger">
-                  <?= $error_msg?>
+                  <?= htmlspecialchars($err_msg) ?>
               </div>
           <?php } ?>
   
