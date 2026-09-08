@@ -6,5 +6,8 @@
 Thumbs.db
 .vscode/
 .idea/
+
+# Uploaded menu product images (keep template demos + gitkeep)
 src/assets/img/menu/*
 !src/assets/img/menu/.gitkeep
+!src/assets/img/menu/menu-item-*.png
