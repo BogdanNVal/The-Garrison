@@ -1,0 +1,131 @@
+/**
+ * Compatibility styles for older Garrison/Yummy component markup
+ * (section-header, section-bg, btn-book-a-table, about-img, call-us)
+ * used with the current BootstrapMade Yummy main.css.
+ */
+
+.section-bg,
+.light-background {
+  --background-color: #f2f2f2;
+  --surface-color: #ffffff;
+  background-color: var(--background-color);
+}
+
+.section-header {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  text-transform: uppercase;
+  font-family: var(--default-font);
+}
+
+.section-header p {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 400;
+  font-family: var(--heading-font);
+  color: var(--heading-color);
+}
+
+.section-header p span {
+  color: var(--accent-color);
+}
+
+@media (max-width: 640px) {
+  .section-header p {
+    font-size: 36px;
+  }
+}
+
+.hero .btn-book-a-table,
+.btn-book-a-table {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px 12px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-right: 16px;
+}
+
+.hero .btn-book-a-table:hover,
+.btn-book-a-table:hover {
+  color: var(--contrast-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.header .logo .sitename {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--heading-color);
+  font-family: var(--default-font);
+  display: inline;
+}
+
+.header .logo span {
+  color: var(--accent-color);
+  font-size: 36px;
+  line-height: 1;
+}
+
+.header-auth a {
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.header-auth a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+.about .about-img {
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+.about .call-us {
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  background-color: var(--surface-color);
+  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.about .call-us h4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-family: var(--default-font);
+  color: var(--heading-color);
+}
+
+.about .call-us p {
+  color: var(--accent-color);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Sticky header offset for page content */
+.header.sticky-top + main,
+.header.sticky-top ~ main,
+#hero {
+  scroll-margin-top: 90px;
+}

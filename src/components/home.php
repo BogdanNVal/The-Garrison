@@ -1,12 +1,12 @@
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="hero d-flex align-items-center section-bg">
+<section id="hero" class="hero d-flex align-items-center section-bg light-background">
     <div class="container">
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
           <h2 data-aos="fade-up">Iasi Gusta<br>Mancare Buna</h2>
           <p data-aos="fade-up" data-aos-delay="100">Bucatarii nostii abia asteapta sa iti prepare cele mai bune delicatese.</p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="rezervare.php" class="btn-book-a-table">Rezerva o masa</a>
+            <a href="rezervare.php" class="btn-book-a-table btn-get-started">Rezerva o masa</a>
             <a href="https://www.youtube.com/watch?v=_SjgEopKjAE" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>

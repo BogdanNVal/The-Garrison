@@ -16,7 +16,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/legacy-compat.css" rel="stylesheet">
   <link href="assets/css/canvas.css" rel="stylesheet">
 
   <!-- =======================================================
@@ -45,44 +46,36 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.php" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>The Garrison<span>.</span></h1>
+        <h1 class="sitename">The Garrison</h1><span>.</span>
       </a>
 
-      <nav id="navbar" class="navbar">
+      <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.php#hero">Home</a></li>
+          <li><a href="index.php#hero" class="active">Home</a></li>
           <li><a href="index.php#about">About</a></li>
           <li><a href="index.php#menu">Meniu</a></li>
           <li><a href="index.php#events">Evenimente</a></li>
           <li><a href="index.php#chefs">Chefs</a></li>
           <li><a href="index.php#gallery">Gallery</a></li>
-          
-      
           <li><a href="#contact">Contact</a></li>
         </ul>
-      </nav><!-- .navbar -->
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-      <!--<a class="btn-book-a-table" href="#book-a-table">Book a Table</a>-->
-      <div class="d-flex  flex-lg-row justify-content-center align-items-center gap-3">
+      <div class="d-flex flex-row justify-content-center align-items-center gap-3 header-auth">
         <?php if (isset($_SESSION['name'])){ ?>
-          
-           
             <a href="logout.php">Logout</a>
-      
         <?php } else { ?>
       <a href="login.php" class="text-decoration-none">Login</a>
       <a href="signup.php" class="text-decoration-none">Sign up</a>
       <?php } ?>
-
       </div>
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
     </div>
   </header><!-- End Header -->

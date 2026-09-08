@@ -32,14 +32,8 @@
               </p>
 
               <div class="position-relative mt-4">
-              <video width="500" height="240" controls>
-                <source src="assets\video\video1.mp4" type="video/mp4">
-                <source src="assets\video\video1.ogg" type="video/ogg">
-                Your browser does not support the video tag.
-              </video>
-
-              
-                
+                <a href="https://www.youtube.com/watch?v=_SjgEopKjAE" class="glightbox pulsating-play-btn"></a>
+                <img src="assets/img/about-2.jpg" class="img-fluid" alt="">
               </div>
             </div>
           </div>
