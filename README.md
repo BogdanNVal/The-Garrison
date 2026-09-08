@@ -2,6 +2,8 @@ The Garrison — Restaurant Web Application
 
 A full-stack application for a fictional restaurant: menu presentation, table reservation system, separate authentication for customers and administrators, and an admin panel for managing the menu (add / edit / delete products with image upload).
 
+The public UI is based on the free [Yummy](https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/) BootstrapMade template (footer credit retained per the free license), wired to a custom PHP/MySQL backend.
+
 ## Screenshots
 
 ![Home page](docs/screenshots/home.png)
@@ -16,13 +18,13 @@ A full-stack application for a fictional restaurant: menu presentation, table re
 - **Separate admin authentication**, with access to a dedicated panel.
 - **Admin panel**: add, edit, and delete menu products, per category (Starters, Breakfast, Lunch, Dinner), with image upload and format validation (jpg/png/jpeg).
 - The **public menu** displays only the products actually added by the admin, grouped by category — no demo content.
-- **Reservation system**: automatically checks whether a table is available for the requested number of people and date before confirming the reservation.
-- **Live search (AJAX)** of existing reservations, from the admin panel.
+- **Reservation system**: automatically checks whether a table is available for the requested number of people and date before confirming the reservation; past dates are rejected.
+- **Live search (AJAX)** of existing reservations, from the admin panel (admin session required).
 - **reCAPTCHA v2 protection** on the login form.
 
 ## Tech stack
 
-- PHP 8.2 (Apache), MySQL, phpMyAdmin — orchestrated with Docker Compose
+- PHP 8.2 (Apache), MySQL 8, phpMyAdmin — orchestrated with Docker Compose
 - mysqli with prepared statements for all database queries
 - Passwords hashed with `password_hash()` / verified with `password_verify()` (for both customers and admins)
 - PHP sessions + signed (SHA-256) cookies for "remember me"
@@ -34,8 +36,10 @@ Copy `.env.example` to `.env` and fill in the reCAPTCHA keys (get them for free 
 Start the containers:
 
 ```
-docker-compose up --build
+docker compose up --build
 ```
+
+If menu image uploads fail in Docker, ensure `src/assets/img/menu` is writable by the container user (for example `chmod 777 src/assets/img/menu` on the host when using a bind mount).
 
 Access:
 
@@ -55,6 +59,7 @@ It's recommended to change this password immediately after the first login (dire
 - Passwords are never stored in plain text; `password_hash()` is used with PHP's default algorithm (bcrypt), for both customers and administrators.
 - Secret keys (reCAPTCHA) are not hard-coded in the source — they're read from environment variables, injected by Docker Compose from a local `.env` file, which is not committed to git.
 - The database schema is versioned in the repo (`db-init/schema.sql`), so the project can be cloned and started from scratch without any manual database setup steps.
+- UI assets come from BootstrapMade Yummy under their [free license](https://bootstrapmade.com/license/) (keep the Designed by BootstrapMade footer credit).
 
 ## Project structure
 
@@ -67,9 +72,10 @@ src/
   search.php, livesearch.php          -> live reservation search (admin)
   function.php                        -> session / remember-me helpers
   dbconnection.php                    -> DB connection + default admin seed
+  components/                         -> Yummy-based page sections
   assets/clase/                       -> Mancare and Rezervare classes
+  assets/{css,js,vendor,img}/         -> Yummy front-end assets
 db-init/schema.sql                    -> database schema (auto-run)
-db-init/migration_add_categorie.sql   -> manual migration for existing databases
 docker-compose.yml, Dockerfile        -> container orchestration
 ```
 
