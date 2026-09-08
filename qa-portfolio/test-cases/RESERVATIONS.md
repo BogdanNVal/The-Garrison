@@ -1,6 +1,6 @@
-# Test cases — Reservations
+# Reservations
 
-SUT: The Garrison · Module: RESERVATIONS
+App: The Garrison
 
 | ID | Title | Preconditions | Steps | Expected | Priority | Type |
 |----|-------|---------------|-------|----------|----------|------|
@@ -10,9 +10,9 @@ SUT: The Garrison · Module: RESERVATIONS
 | RES-04 | Accept party size 6 | Customer; table for 6 free | nr_persoane = 6; future date | Reservation created | Med | Boundary |
 | RES-05 | Reject empty date | Customer on form | Leave date empty | “Alegeti o data” | High | Negative |
 | RES-06 | Reject past dates | Customer on form | Date = yesterday or `2020-01-01` | Validation error; **no DB insert** | High | Negative |
-| RES-07 | Reject today’s date in the past hours / past calendar day | Customer | Use past calendar date | Not accepted | Med | Boundary |
-| RES-08 | When all suitable tables booked | Book all tables that fit size for a date | Another booking same size/date | Clear “no free tables” style error | High | Negative |
-| RES-09 | Assigns table with capacity ≥ party size | Customer | Book 3 people | Assigned `mese.nr_persoane` ≥ 3 | Med | Positive |
-| RES-10 | Reservation stores logged-in user name | Customer named “QA Tester” | Book successfully | `rezervari.nume` = session name | Med | Positive |
-| RES-11 | Guest redirected from reservation page | Logged out | GET `/rezervare.php` | Redirect to login | High | Negative |
-| RES-12 | Admin does not use customer reservation form as primary flow | Admin logged in | Note product behavior | Admin redirected/handled per app rules; document actual | Low | UX |
+| RES-07 | Past calendar date blocked | Customer | Pick a date before today | Error, not saved | Med | Boundary |
+| RES-08 | No free table left | All tables that fit the party are booked for that date | Try another booking same size/date | Clear error that nothing is free | High | Negative |
+| RES-09 | Picks a table big enough | Customer | Book for 3 people | Assigned table seats ≥ 3 | Med | Positive |
+| RES-10 | Saves the logged-in name | Customer named “QA Tester” | Book successfully | Reservation name is QA Tester | Med | Positive |
+| RES-11 | Guest sent to login | Logged out | Open /rezervare.php | Redirect to login | High | Negative |
+| RES-12 | What happens if admin opens reservation page | Admin logged in | Open /rezervare.php | Note actual behavior (redirect / form / error) | Low | UX |

@@ -1,41 +1,47 @@
-# Junior QA Portfolio — The Garrison
+# The Garrison — QA notes
 
-Manual test design, bug reports, smoke/regression checklists, and a small Playwright (TypeScript) smoke suite for **[The Garrison](https://github.com/BogdanNVal/The-Garrison)** — a PHP/MySQL restaurant web app (menu admin, auth, table reservations).
+I tested [The Garrison](https://github.com/BogdanNVal/The-Garrison), a small restaurant web app (PHP + MySQL): customer accounts, table reservations, admin menu management, and live search for reservations.
 
-This folder is a **QA-owned portfolio**, not another product app. It shows how a junior software tester approaches a real system under test (SUT).
+This folder is what I produced while testing it — plan, cases, bugs I found, checklists, and a short Playwright smoke pack.
 
-## What’s inside
+## Folder layout
 
-| Path | Purpose |
-|------|---------|
-| [test-plan.md](test-plan.md) | Scope, environments, risks, test data |
-| [test-cases/](test-cases/) | ~35 manual cases (AUTH, MENU_ADMIN, RESERVATIONS, SEARCH) |
-| [bug-reports/](bug-reports/) | Defects found while exploring the SUT |
-| [checklists/](checklists/) | Smoke + regression checklists |
-| [automation/](automation/) | Playwright smoke tests (TypeScript) |
+| Path | What it is |
+|------|------------|
+| [test-plan.md](test-plan.md) | What I covered / skipped |
+| [test-cases/](test-cases/) | Manual cases by area |
+| [bug-reports/](bug-reports/) | Bugs logged during testing |
+| [checklists/](checklists/) | Smoke + regression |
+| [automation/](automation/) | Playwright smoke (TypeScript) |
 
-## System under test
+## App under test
 
-- **App:** The Garrison (`../` in this repository)
-- **Stack:** PHP 8.2, MySQL, Docker Compose
-- **URL (local):** http://localhost:8080
-- **Default admin:** `admin@garrison.com` / `admin123`
+- Local URL: http://localhost:8080
+- Stack: PHP 8.2, MySQL, Docker Compose
+- Default admin: `admin@garrison.com` / `admin123`
 
-## How to run the SUT
+## Run the app
 
-From the repository root:
+From the repo root:
 
 ```bash
-cp -n .env.example .env   # leave reCAPTCHA keys empty for local runs
+cp .env.example .env
+```
+
+Leave the reCAPTCHA fields empty for local testing (otherwise login breaks).
+
+```bash
 docker compose up --build
 ```
 
 - Site: http://localhost:8080  
 - phpMyAdmin: http://localhost:8081 (root / toor)
 
-> If containers cannot reach each other on your machine, see [docker/README.md](docker/README.md) for a host-network workaround used during this portfolio’s exploration.
+If Compose networking misbehaves on your machine, see [docker/README.md](docker/README.md).
 
-## How to run Playwright smoke tests
+## Run the smoke tests
+
+App must be up first.
 
 ```bash
 cd qa-portfolio/automation
@@ -44,17 +50,4 @@ npx playwright install chromium
 npm test
 ```
 
-Requires the SUT at `http://localhost:8080` (override with `BASE_URL`).
-
-## Skills demonstrated
-
-- Test planning and risk-based scope
-- Manual test case design (positive / negative / boundary)
-- Bug reporting with severity, steps, expected vs actual
-- Smoke vs regression checklists
-- Light UI automation with Playwright + TypeScript
-- Exploring auth, authorization, CRUD, and AJAX search
-
-## CV blurb
-
-> Junior QA portfolio for The Garrison (PHP/MySQL restaurant app): test plan, 35 manual test cases, defect reports from exploratory testing, smoke/regression checklists, and Playwright TypeScript smoke automation.
+Optional: `BASE_URL=http://127.0.0.1:8080 npm test`

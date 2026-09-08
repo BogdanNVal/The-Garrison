@@ -1,6 +1,6 @@
-# Test cases — Admin reservation search
+# Admin reservation search
 
-SUT: The Garrison · Module: SEARCH
+App: The Garrison
 
 | ID | Title | Preconditions | Steps | Expected | Priority | Type |
 |----|-------|---------------|-------|----------|----------|------|

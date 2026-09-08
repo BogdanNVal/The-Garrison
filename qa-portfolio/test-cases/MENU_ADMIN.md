@@ -1,6 +1,6 @@
-# Test cases — Menu administration
+# Menu admin
 
-SUT: The Garrison · Module: MENU_ADMIN
+App: The Garrison
 
 | ID | Title | Preconditions | Steps | Expected | Priority | Type |
 |----|-------|---------------|-------|----------|----------|------|

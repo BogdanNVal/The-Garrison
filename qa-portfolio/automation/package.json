@@ -2,7 +2,7 @@
   "name": "the-garrison-qa-automation",
   "version": "1.0.0",
   "private": true,
-  "description": "Playwright smoke tests for The Garrison (junior QA portfolio)",
+  "description": "Playwright smoke tests for The Garrison",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",

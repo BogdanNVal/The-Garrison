@@ -1,20 +1,20 @@
-# Smoke checklist — The Garrison
+# Smoke checklist
 
-Run after every deploy / before demos. Target: ~10 minutes.
+Quick pass before a demo or after a deploy. About 10 minutes.
 
-Environment: _________________ Build/commit: _________________
+Env: _____________  Build: _____________
 
 | # | Check | Pass | Fail | Notes |
 |---|-------|------|------|-------|
-| 1 | Home / login page loads (HTTP 200) | ☐ | ☐ | |
-| 2 | Sign up new customer | ☐ | ☐ | |
-| 3 | Log in as customer → lands on home | ☐ | ☐ | |
-| 4 | Customer can open reservation form | ☐ | ☐ | |
-| 5 | Create reservation (future date, size 2–6) | ☐ | ☐ | |
-| 6 | Log out → reservation URL redirects to login | ☐ | ☐ | |
-| 7 | Log in as admin → `/secure.php` | ☐ | ☐ | |
-| 8 | Add menu item (valid price + image) | ☐ | ☐ | |
-| 9 | Admin search page loads | ☐ | ☐ | |
-| 10 | Playwright smoke suite green (`npm test`) | ☐ | ☐ | |
+| 1 | Login page opens | ☐ | ☐ | |
+| 2 | Can create a new customer | ☐ | ☐ | |
+| 3 | Customer login goes to home | ☐ | ☐ | |
+| 4 | Customer can open reservation page | ☐ | ☐ | |
+| 5 | Book a table (future date, 2–6 people) | ☐ | ☐ | |
+| 6 | After logout, /rezervare.php sends you to login | ☐ | ☐ | |
+| 7 | Admin login opens admin panel | ☐ | ☐ | |
+| 8 | Admin can add a dish (normal price + image) | ☐ | ☐ | |
+| 9 | Admin search page opens | ☐ | ☐ | |
+| 10 | `npm test` in automation/ is green | ☐ | ☐ | |
 
-**Sign-off:** _________________ Date: _________
+Signed: _____________  Date: _____________

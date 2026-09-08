@@ -82,7 +82,6 @@ test.describe('The Garrison — smoke', () => {
     const pngPath = path.join(__dirname, 'fixtures', 'dot.png');
     fs.mkdirSync(path.dirname(pngPath), { recursive: true });
     if (!fs.existsSync(pngPath)) {
-      // 1x1 PNG
       const buf = Buffer.from(
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
         'base64',

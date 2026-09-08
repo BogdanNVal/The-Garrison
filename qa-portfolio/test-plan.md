@@ -1,72 +1,66 @@
-# Test Plan — The Garrison
+# Test plan — The Garrison
 
-| Field | Value |
-|-------|--------|
-| Project | The Garrison — restaurant web application |
-| Author | Junior QA portfolio |
-| SUT version | Repository `main` / local Docker build |
-| Environments | Local Docker Compose (`http://localhost:8080`) |
+| | |
+|--|--|
+| App | The Garrison (restaurant site) |
+| Build | Local Docker |
+| Base URL | http://localhost:8080 |
+| Tester | Bogdan |
 
-## 1. Objective
+## Goal
 
-Verify that core user and admin flows work correctly: authentication, menu management, table reservations, and admin reservation search. Produce evidence (cases, bugs, automation) suitable for a junior software tester portfolio.
+Check the main flows work: signup/login, admin menu CRUD, reservations, admin reservation search. Log anything broken I hit along the way.
 
-## 2. In scope
+## In scope
 
-- Customer signup, login, logout, remember-me (customer path)
-- Admin login and access to admin panel
-- Role separation (customer vs admin)
-- Admin menu CRUD (add / update / delete) and categories
-- Image upload validation (extension jpg/png/jpeg)
-- Reservation form validation and table assignment
-- Admin live search of reservations (AJAX)
-- Basic authorization on protected pages
+- Customer signup / login / logout / remember me
+- Admin login and admin panel access
+- Customer vs admin access (who can open what)
+- Add / update / delete menu items, categories, image upload (jpg/png/jpeg)
+- Reservation validation and table assignment
+- Admin live search (AJAX)
+- Basic checks that guests can’t open protected pages
 
-## 3. Out of scope
+## Out of scope
 
-- Performance / load testing
-- Full security penetration testing (beyond obvious authz findings)
-- Mobile device lab / cross-browser matrix (smoke uses Chromium only)
-- Visual polish of third-party template assets
-- Payment / email notifications (not implemented)
+- Load / performance
+- Full security audit (I still logged obvious auth holes)
+- Full browser matrix (automation is Chromium only)
+- Pixel-perfect UI / missing template assets
+- Payments / emails (not in the app)
 
-## 4. Test types
+## How I tested
 
-| Type | Approach |
-|------|----------|
-| Smoke | Checklist + Playwright suite |
-| Functional | Manual cases in `test-cases/` |
-| Negative / boundary | Party size, prices, dates, empty fields |
-| Exploratory | Free exploration → `bug-reports/` |
-| Regression | Broader checklist after fixes |
+- Manual cases in `test-cases/`
+- Exploratory passes → `bug-reports/`
+- Smoke checklist + Playwright for a quick green/red signal
+- Regression checklist after bigger changes
 
-## 5. Test data
+## Test data
 
-| Role | Credentials | Notes |
-|------|-------------|-------|
-| Admin | `admin@garrison.com` / `admin123` | Seeded when `admins` table is empty |
-| Customer | Create via Sign up (e.g. `qa.tester@example.com` / `test123`) | Unique email per run |
-| Tables | Seeded: 2, 2, 4, 4, 6 seats | From `db-init/schema.sql` |
+| Role | Account | Notes |
+|------|---------|-------|
+| Admin | `admin@garrison.com` / `admin123` | Created automatically if admins table is empty |
+| Customer | Sign up a new one each run | e.g. `qa.tester@example.com` / `test123` |
+| Tables | 2, 2, 4, 4, 6 seats | From `db-init/schema.sql` |
 
-reCAPTCHA keys empty in `.env` → verification skipped (documented app behavior).
+Keep reCAPTCHA keys empty in `.env` locally, or login will fail the captcha check.
 
-## 6. Entry / exit criteria
+## Entry / exit
 
-**Entry:** `docker compose up` healthy; home/login reachable; DB schema applied.
+**Start when:** containers are up, login page loads, DB is there.
 
-**Exit (portfolio):** test plan + ≥30 cases + ≥5 real bugs + smoke/regression checklists + Playwright smoke green against local SUT.
+**Done when:** plan + cases are written, bugs are filed, checklists exist, and `npm test` passes against local.
 
-## 7. Risks
+## Risks I watched
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Missing frontend template files in repo | UI incomplete | Stubbed minimal components for local QA; logged as defect |
-| Docker inter-container networking | Cannot reach MySQL | Host-network / published-port workaround |
-| Shared `remember_token` cookie for admin & user | Wrong role restored | Covered in AUTH cases / bug notes |
-| Default admin password | Security risk in shared envs | Documented; change after first login |
+| Risk | Why it matters | What I did |
+|------|----------------|------------|
+| Repo was missing some UI includes | Hard to even open pages | Logged as BUG-008; used minimal stubs so flows were still testable |
+| Docker DB connection issues on some setups | Can’t test anything | Documented workaround under `docker/` |
+| Same remember-me cookie for admin and user | Wrong role after reopen | Covered in auth cases |
+| Default admin password | Bad if env is shared | Noted in README; change it if you deploy |
 
-## 8. Tools
+## Tools
 
-- Manual: browser + curl for API-like POST checks
-- Automation: Playwright (TypeScript)
-- DB inspection: phpMyAdmin / `mysql` CLI
+Browser, curl for a few direct POSTs, Playwright, phpMyAdmin / mysql CLI when I needed to confirm DB rows.

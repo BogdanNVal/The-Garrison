@@ -1,6 +1,6 @@
-# Test cases — Authentication & roles
+# Auth & roles
 
-SUT: The Garrison · Module: AUTH
+App: The Garrison
 
 | ID | Title | Preconditions | Steps | Expected | Priority | Type |
 |----|-------|---------------|-------|----------|----------|------|
@@ -19,6 +19,6 @@ SUT: The Garrison · Module: AUTH
 | AUTH-13 | Customer cannot open admin panel | Logged in as customer | Open `/secure.php` | Redirect away (not admin UI) | High | Negative |
 | AUTH-14 | Guest cannot open reservation page | Logged out | Open `/rezervare.php` | Redirect to `login.php` | High | Negative |
 | AUTH-15 | Logout clears session | Logged in | Open `/logout.php` | Redirect to login; protected pages require login again | High | Positive |
-| AUTH-16 | Remember me (customer) | Valid customer | Login with Remember Me; close browser cookie session; revisit | User still recognized via remember token | Med | Positive |
-| AUTH-17 | Admin checked before customer on login | Same email could exist in both tables (setup if possible) | Login | Admin path takes precedence (admins queried first) | Low | Boundary |
-| AUTH-18 | Login does not echo email after failure | On login page | Fail login with typed email | Email field should retain value for UX (document actual behavior) | Low | UX |
+| AUTH-16 | Remember me (customer) | Valid customer | Login with Remember Me; close browser; open site again | Still logged in as that customer | Med | Positive |
+| AUTH-17 | Admin wins if email exists in both tables | Same email in admins and users (if you can set that up) | Log in with that email | Goes to admin panel | Low | Boundary |
+| AUTH-18 | Failed login keeps the email filled in | On login page | Fail login with a typed email | Email still in the field (easier to retry) | Low | UX |

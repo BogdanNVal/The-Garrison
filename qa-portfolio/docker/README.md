@@ -1,21 +1,20 @@
-# Local Docker notes (QA exploration)
+# Docker notes
 
-Normal path for most machines:
+Normal run from repo root:
 
 ```bash
-# repo root
 docker compose up --build
 ```
 
-PHP talks to MySQL via hostname `mysql_db` (`DB_HOST` env, default in `src/dbconnection.php`).
+PHP connects to MySQL as host `mysql_db` (or whatever you set in `DB_HOST`).
 
-## Workaround used in this Cloud Agent environment
+## If containers can’t talk to MySQL
 
-Bridge networking between Compose containers timed out on TCP/3306. Exploration used:
+On one setup the bridge network timed out on port 3306. What worked:
 
-1. MySQL published on host `127.0.0.1:3306`
-2. PHP/Apache with `--network host`, Apache on port **8080**, `DB_HOST=127.0.0.1`
+1. MySQL on the host: `127.0.0.1:3306`
+2. PHP/Apache on host network, port 8080, `DB_HOST=127.0.0.1`
 
-Helper configs in this folder (`ports.conf`, `000-default.conf`) bind Apache to 8080 under host networking.
+`ports.conf` and `000-default.conf` in this folder are for that Apache-on-8080 setup.
 
-You should not need this if `docker compose` networking works on your laptop.
+You probably won’t need this if `docker compose` works normally on your PC.
