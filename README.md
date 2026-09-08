@@ -57,6 +57,10 @@ If image uploads fail under Docker, make the upload folder writable on the host,
 chmod 777 src/assets/img/menu
 ```
 
+## QA notes
+
+Test plan, manual cases, bug reports, checklists, and Playwright smoke tests for the current main build are in [`qa-portfolio/`](qa-portfolio/README.md).
+
 ## Project layout
 
 ```
@@ -71,6 +75,7 @@ src/
   components/                        page sections (Yummy-based)
   assets/clase/                      Mancare and Rezervare classes
   assets/{css,js,vendor,img}/        front-end assets
+qa-portfolio/                        QA docs + Playwright smoke
 db-init/schema.sql                   schema + seed data (auto-run)
 docker-compose.yml, Dockerfile       containers
 ```
