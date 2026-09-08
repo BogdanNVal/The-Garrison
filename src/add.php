@@ -20,7 +20,7 @@ if (!is_admin_logged_in()) {
   $categorii_disponibile = Mancare::CATEGORII_VALIDE;
 
   $nume = $descriere = $imagine = "";
-  // Categoria vine preselectata daca vii de pe secure.php cu ?categorie=..., altfel implicit "starters"
+  // Optional ?categorie= from secure.php; default starters.
   $categorie = (isset($_GET['categorie']) && in_array($_GET['categorie'], $categorii_disponibile, true))
       ? $_GET['categorie']
       : "starters";

@@ -3,9 +3,7 @@ function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 
-/**
- * Safely read a trimmed string from $_POST (rejects arrays to avoid TypeError on trim).
- */
+/** Trimmed string from $_POST; ignores non-strings. */
 function request_string(string $key, string $default = ''): string {
     if (!isset($_POST[$key]) || !is_string($_POST[$key])) {
         return $default;

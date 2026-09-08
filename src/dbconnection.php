@@ -13,8 +13,7 @@ try {
     die("DB connection failed: " . htmlspecialchars($e->getMessage()));
 }
 
-// Creeaza automat un admin implicit daca tabelul "admins" e gol
-// (o singura data, la prima accesare a site-ului dupa ce tabelele exista).
+// Seed default admin when the table is empty.
 try {
     $check = $conn->query("SELECT COUNT(*) AS total FROM admins");
     if ($check && $check->fetch_assoc()['total'] == 0) {

@@ -13,7 +13,6 @@ if (!is_admin_logged_in()) {
     die;
 }
 
-// Etichete de afisat pentru fiecare categorie
 $categorii = [
     'starters'  => 'Starters',
     'breakfast' => 'Breakfast',
