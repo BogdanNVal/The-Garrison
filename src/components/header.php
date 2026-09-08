@@ -34,7 +34,9 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <?php if (getenv('RECAPTCHA_SITE_KEY')) { ?>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <?php } ?>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
@@ -61,13 +63,17 @@
       </nav><!-- .navbar -->
 
       <div class="d-flex flex-row justify-content-center align-items-center gap-3">
-        <?php if (isset($_SESSION['name'])) { ?>
+        <?php if (function_exists('is_admin_logged_in') && is_admin_logged_in()) { ?>
+          <a href="secure.php" class="text-decoration-none">Admin</a>
           <a href="logout.php" class="text-decoration-none">Logout</a>
+        <?php } elseif (isset($_SESSION['name'])) { ?>
+          <a href="logout.php" class="text-decoration-none">Logout</a>
+          <a class="btn-book-a-table" href="rezervare.php">Rezerva o masa</a>
         <?php } else { ?>
           <a href="login.php" class="text-decoration-none">Login</a>
           <a href="signup.php" class="text-decoration-none">Sign up</a>
+          <a class="btn-book-a-table" href="rezervare.php">Rezerva o masa</a>
         <?php } ?>
-        <a class="btn-book-a-table" href="rezervare.php">Rezerva o masa</a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>

@@ -227,9 +227,11 @@ include("components/header.php");
                         
                     />Remember Me
                 </div>
+                <?php if (getenv('RECAPTCHA_SITE_KEY')) { ?>
                 <div class="form-group">
                 <div class="g-recaptcha" data-sitekey="<?= htmlspecialchars(getenv('RECAPTCHA_SITE_KEY')) ?>"></div>
                 </div>
+                <?php } ?>
                 
                 <div class="reg-button text-center mt-3">
                     <button
