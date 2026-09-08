@@ -10,7 +10,7 @@ This folder is what I produced while testing it — plan, cases, bugs I found, c
 |------|------------|
 | [test-plan.md](test-plan.md) | What I covered / skipped |
 | [test-cases/](test-cases/) | Manual cases by area |
-| [bug-reports/](bug-reports/) | Bugs logged during testing |
+| [bug-reports/](bug-reports/) | Bugs logged during testing (BUG-001 … BUG-010) |
 | [checklists/](checklists/) | Smoke + regression |
 | [automation/](automation/) | Playwright smoke (TypeScript) |
 
@@ -38,6 +38,9 @@ docker compose up --build
 - phpMyAdmin: http://localhost:8081 (root / toor)
 
 If Compose networking misbehaves on your machine, see [docker/README.md](docker/README.md).
+
+If admin image upload fails silently after clone, check the same file — upload folder permissions (BUG-009).
+
 
 ## Run the smoke tests
 

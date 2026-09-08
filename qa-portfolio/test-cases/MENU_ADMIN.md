@@ -20,3 +20,4 @@ App: The Garrison
 | MENU-14 | Guest cannot add products | Logged out | Open `/add.php` | Redirect to public home/index | High | Negative |
 | MENU-15 | Public menu shows only admin-added items | Products in DB | Open public menu section | Only real products; no hard-coded demo dishes | Med | Positive |
 | MENU-16 | Admin error messages on add failure | Force DB/class error if possible | Submit add | User-visible error (not silent fail) | Med | Negative |
+| MENU-17 | Add with valid image works under Docker | Admin; `assets/img/menu` may be host-mounted | Add dish with PNG after fresh compose | Redirect to admin menu; image file appears under `assets/img/menu/` | High | Positive |

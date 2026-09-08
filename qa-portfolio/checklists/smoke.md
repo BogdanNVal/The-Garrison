@@ -13,7 +13,7 @@ Env: _____________  Build: _____________
 | 5 | Book a table (future date, 2–6 people) | ☐ | ☐ | |
 | 6 | After logout, /rezervare.php sends you to login | ☐ | ☐ | |
 | 7 | Admin login opens admin panel | ☐ | ☐ | |
-| 8 | Admin can add a dish (normal price + image) | ☐ | ☐ | |
+| 8 | Admin can add a dish (normal price + image) | ☐ | ☐ | Needs writable `src/assets/img/menu` (see BUG-009) |
 | 9 | Admin search page opens | ☐ | ☐ | |
 | 10 | `npm test` in automation/ is green | ☐ | ☐ | |
 

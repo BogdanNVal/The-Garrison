@@ -24,32 +24,34 @@ Use after fixes or bigger changes. Case IDs are in `test-cases/`.
 | 11 | Update works (with/without new image) | MENU-10–11 | ☐ | ☐ |
 | 12 | Delete confirm + item gone | MENU-12–13, BUG-005 | ☐ | ☐ |
 | 13 | Guest can’t add/update/delete | MENU-14 | ☐ | ☐ |
+| 14 | Public menu has no hard-coded demo dishes | MENU-15, BUG-010 | ☐ | ☐ |
 
 ## Reservations
 
 | # | Check | Cases | Pass | Fail |
 |---|-------|-------|------|------|
-| 14 | Happy path, name stored | RES-01, RES-10 | ☐ | ☐ |
-| 15 | Party size 0 / 7 / 6 | RES-02–04 | ☐ | ☐ |
-| 16 | Empty date blocked | RES-05 | ☐ | ☐ |
-| 17 | Past dates blocked | RES-06, BUG-001 | ☐ | ☐ |
-| 18 | Message when no table left | RES-08 | ☐ | ☐ |
+| 15 | Happy path, name stored | RES-01, RES-10 | ☐ | ☐ |
+| 16 | Party size 0 / 7 / 6 | RES-02–04 | ☐ | ☐ |
+| 17 | Empty date blocked | RES-05 | ☐ | ☐ |
+| 18 | Past dates blocked | RES-06, BUG-001 | ☐ | ☐ |
+| 19 | Message when no table left | RES-08 | ☐ | ☐ |
 
 ## Search
 
 | # | Check | Cases | Pass | Fail |
 |---|-------|-------|------|------|
-| 19 | Live search: hit, miss, clear | SRCH-02–04 | ☐ | ☐ |
-| 20 | Guest blocked from search page | SRCH-06 | ☐ | ☐ |
-| 21 | livesearch.php without login | SRCH-07, BUG-002 | ☐ | ☐ |
-| 22 | Spelling on “rezervari” button | SRCH-09, BUG-006 | ☐ | ☐ |
+| 20 | Live search: hit, miss, clear | SRCH-02–04 | ☐ | ☐ |
+| 21 | Guest blocked from search page | SRCH-06 | ☐ | ☐ |
+| 22 | livesearch.php without login | SRCH-07, BUG-002 | ☐ | ☐ |
+| 23 | Spelling on “rezervari” button | SRCH-09, BUG-006 | ☐ | ☐ |
 
 ## Other
 
 | # | Check | Ref | Pass | Fail |
 |---|-------|-----|------|------|
-| 23 | Signup name not injectable | BUG-004 | ☐ | ☐ |
-| 24 | Add form shows backend errors | BUG-007 | ☐ | ☐ |
-| 25 | Fresh clone runs without missing includes | BUG-008 | ☐ | ☐ |
+| 24 | Signup name not injectable | BUG-004 | ☐ | ☐ |
+| 25 | Add form shows backend errors | BUG-007 | ☐ | ☐ |
+| 26 | Fresh clone runs without missing includes / assets | BUG-008 | ☐ | ☐ |
+| 27 | Menu upload works in Docker (writable `assets/img/menu`) | BUG-009, MENU-17 | ☐ | ☐ |
 
 Signed: _____________  Date: _____________

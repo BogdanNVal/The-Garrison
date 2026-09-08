@@ -26,7 +26,7 @@ Check the main flows work: signup/login, admin menu CRUD, reservations, admin re
 - Load / performance
 - Full security audit (I still logged obvious auth holes)
 - Full browser matrix (automation is Chromium only)
-- Pixel-perfect UI / missing template assets
+- Pixel-perfect UI polish (assets were restored on this branch; still logged leftover demo menu content as BUG-010)
 - Payments / emails (not in the app)
 
 ## How I tested
@@ -56,10 +56,12 @@ Keep reCAPTCHA keys empty in `.env` locally, or login will fail the captcha chec
 
 | Risk | Why it matters | What I did |
 |------|----------------|------------|
-| Repo was missing some UI includes | Hard to even open pages | Logged as BUG-008; real components restored on this branch |
+| Repo was missing some UI includes / assets | Hard to even open pages | Logged as BUG-008; components + front-end assets restored on this branch |
 | Docker DB connection issues on some setups | Can’t test anything | Documented workaround under `docker/` |
+| Upload folder not writable in Docker | Admin “add dish” looks broken / smoke fails | Logged as BUG-009; chmod note in `docker/README.md` |
 | Same remember-me cookie for admin and user | Wrong role after reopen | Covered in auth cases |
 | Default admin password | Bad if env is shared | Noted in README; change it if you deploy |
+| Template demo dishes left in public menu | README claim vs real UI | Logged as BUG-010 (MENU-15) |
 
 ## Tools
 
