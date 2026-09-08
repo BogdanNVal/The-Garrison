@@ -106,7 +106,8 @@ include("components/header.php");
 <section class="sample-page">
   <div class="container" data-aos="fade-up">
 
-  <div class="position-absolute top-20 start-50" >
+  <div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
     <div><h1>Update</h1></div>
       <div class="err-msg">
           
@@ -208,8 +209,7 @@ include("components/header.php");
           
       </form>
   </div>
-
-
+  </div>
 
   </div>
 </section>

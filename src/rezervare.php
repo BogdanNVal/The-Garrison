@@ -49,7 +49,7 @@ if (!is_logged_in()) {
   }
   if (!$error){
     require 'assets/clase/rezervare_masa.php';
-      $rezervare= new Rezervare($_POST['nr_persoane'],$_SESSION['name'],$data_rezervare);
+      $rezervare= new Rezervare($nr_persoane, $_SESSION['name'], $data_rezervare);
       $rezervare->verifica_rezervare();
       if(empty($rezervare->error)){
        
@@ -91,7 +91,8 @@ if (!is_logged_in()) {
 
   
   
-  <div class="position-absolute top-20 start-50" >
+  <div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8">
     <div class=" mb-3"><h1>Rezervare</h1></div>
     <div class="col-lg-4">
             <svg width="200" height="200" viewBox="-100 -100 200 200">
@@ -172,8 +173,7 @@ if (!is_logged_in()) {
           
       </form>
   </div>
-
-    
+  </div>
 
   </div>
 </section>
