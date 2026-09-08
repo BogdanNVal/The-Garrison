@@ -56,7 +56,7 @@ Keep reCAPTCHA keys empty in `.env` locally, or login will fail the captcha chec
 
 | Risk | Why it matters | What I did |
 |------|----------------|------------|
-| Repo was missing some UI includes | Hard to even open pages | Logged as BUG-008; used minimal stubs so flows were still testable |
+| Repo was missing some UI includes | Hard to even open pages | Logged as BUG-008; real components restored on this branch |
 | Docker DB connection issues on some setups | Can’t test anything | Documented workaround under `docker/` |
 | Same remember-me cookie for admin and user | Wrong role after reopen | Covered in auth cases |
 | Default admin password | Bad if env is shared | Noted in README; change it if you deploy |
