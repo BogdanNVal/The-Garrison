@@ -3,6 +3,16 @@ function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 
+/**
+ * Safely read a trimmed string from $_POST (rejects arrays to avoid TypeError on trim).
+ */
+function request_string(string $key, string $default = ''): string {
+    if (!isset($_POST[$key]) || !is_string($_POST[$key])) {
+        return $default;
+    }
+    return trim($_POST[$key]);
+}
+
 function check_remember_me($conn) {
     if (isset($_COOKIE['remember_token'])) {
         $remember_token = $_COOKIE['remember_token'];

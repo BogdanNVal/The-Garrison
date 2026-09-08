@@ -24,8 +24,8 @@ if (!is_logged_in()) {
 
 
 
-   $nr_persoane = trim($_POST['nr_persoane']);
-   $data_rezervare=$_POST['data_rezervare'];
+   $nr_persoane = request_string('nr_persoane');
+   $data_rezervare = request_string('data_rezervare');
 
   if ($nr_persoane <= 0){
     $nr_persoane_err = "Alegeti un numar de persoane";

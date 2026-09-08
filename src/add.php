@@ -30,13 +30,14 @@ if (!is_admin_logged_in()) {
   
   if (isset($_POST['submit'])){
       
-      $nume = trim($_POST['nume']);
-      $pret=$_POST['pret'];
-      $descriere=trim($_POST['descriere']);
+      $nume = request_string('nume');
+      $pret = request_string('pret');
+      $descriere = request_string('descriere');
       $categorie = in_array($_POST['categorie'] ?? '', $categorii_disponibile, true) ? $_POST['categorie'] : "starters";
       $targetDir="assets/img/menu/";
-      $imagine=$targetDir.basename($_FILES['file']['name']);
-      $imageFileType = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+      $fileName = (isset($_FILES['file']['name']) && is_string($_FILES['file']['name'])) ? basename($_FILES['file']['name']) : '';
+      $imagine=$targetDir.$fileName;
+      $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
        
     
  

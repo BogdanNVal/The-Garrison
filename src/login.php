@@ -29,8 +29,8 @@ $error_msg = "";
 $remember = "";
 
 if (isset($_POST['submit'])) {
-    $email = trim($_POST['email']);
-    $pwd = trim($_POST['pwd']);
+    $email = request_string('email');
+    $pwd = request_string('pwd');
 
     if (isset($_POST['remember'])) {
         $remember = $_POST['remember'];

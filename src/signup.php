@@ -29,10 +29,10 @@ else
   
   if (isset($_POST['submit'])){
   
-      $name = trim($_POST['name']);
-      $email = trim($_POST['email']);
-      $pwd = trim($_POST['pwd']);
-      $conf_pwd = trim($_POST['conf_pwd']);
+      $name = request_string('name');
+      $email = request_string('email');
+      $pwd = request_string('pwd');
+      $conf_pwd = request_string('conf_pwd');
  
       if ($name == ""){
           $name_err = "Name is mandatory";

@@ -12,9 +12,11 @@ if (!is_admin_logged_in()) {
 
 ?>
 <?php
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (!isset($_GET['id']) || !ctype_digit((string)$_GET['id'])) {
+    header("Location: secure.php");
+    exit();
 }
+$id = (int)$_GET['id'];
 
 
 if (isset($_POST['submit'])) {
@@ -28,7 +30,7 @@ if (isset($_POST['submit'])) {
        else{
         
        $err_msg=$mancare->error;
-    echo $err_msg;}
+    echo htmlspecialchars($err_msg);}
 }
 
 include("components/header.php");

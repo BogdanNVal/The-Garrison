@@ -13,7 +13,7 @@ if (!is_admin_logged_in()) {
 
 require 'assets/clase/rezervare_masa.php';
 
-$input = trim($_POST['input'] ?? '');
+$input = request_string('input');
 
 $result = null;
 if ($input != "") {
