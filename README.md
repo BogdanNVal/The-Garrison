@@ -56,6 +56,10 @@ It's recommended to change this password immediately after the first login (dire
 - Secret keys (reCAPTCHA) are not hard-coded in the source — they're read from environment variables, injected by Docker Compose from a local `.env` file, which is not committed to git.
 - The database schema is versioned in the repo (`db-init/schema.sql`), so the project can be cloned and started from scratch without any manual database setup steps.
 
+## QA notes
+
+Test plan, manual cases, bug reports, checklists, and Playwright smoke tests are in [`qa-portfolio/`](qa-portfolio/README.md).
+
 ## Project structure
 
 ```
@@ -68,8 +72,9 @@ src/
   function.php                        -> session / remember-me helpers
   dbconnection.php                    -> DB connection + default admin seed
   assets/clase/                       -> Mancare and Rezervare classes
+  components/                         -> header/footer and page sections
+qa-portfolio/                         -> QA docs + Playwright smoke
 db-init/schema.sql                    -> database schema (auto-run)
-db-init/migration_add_categorie.sql   -> manual migration for existing databases
 docker-compose.yml, Dockerfile        -> container orchestration
 ```
 
