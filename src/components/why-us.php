@@ -6,9 +6,9 @@
         <div class="why-box">
           <h3>Why Choose The Garrison?</h3>
           <p>
-            In inima Iasului, The Garrison combina retete locale cu o atmosfera
-            calda. Venim cu ingrediente proaspete, o echipa dedicata si o masa
-            rezervata atunci cand ai nevoie.
+            Suntem in Iasi, cu retete pe care le cunoastem bine si o atmosfera
+            in care stai linistit. Ingrediente de sezon, echipa din bucatarie
+            si o masa rezervata cand ai nevoie.
           </p>
           <div class="text-center">
             <a href="index.php#about" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -22,7 +22,7 @@
             <div class="icon-box d-flex flex-column justify-content-center align-items-center">
               <i class="bi bi-clipboard-data"></i>
               <h4>Meniu actualizat</h4>
-              <p>Preparatele din meniu sunt gestionate live din panoul de administrare.</p>
+              <p>Ce vezi pe site e ce gatim acum — actualizam meniul pe masura ce schimbam oferta.</p>
             </div>
           </div><!-- End Icon Box -->
 
@@ -38,7 +38,7 @@
             <div class="icon-box d-flex flex-column justify-content-center align-items-center">
               <i class="bi bi-inboxes"></i>
               <h4>Rezervare simpla</h4>
-              <p>Rezerva o masa online in cateva click-uri, cu confirmare imediata.</p>
+              <p>Rezervi online in cateva click-uri si primesti confirmarea pe loc.</p>
             </div>
           </div><!-- End Icon Box -->
         </div>

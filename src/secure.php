@@ -52,8 +52,8 @@ include("components/header.php");
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Our Menu</h2>
-          <p>Check Our <span>The Garrison Menu</span></p>
+          <h2>Menu</h2>
+          <p>Admin <span>Menu</span></p>
         </div>
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">

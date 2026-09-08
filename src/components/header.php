@@ -6,8 +6,8 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>The Garrison</title>
-  <meta content="The Garrison restaurant — menu, reservations, and more" name="description">
-  <meta content="restaurant, garrison, menu, rezervare" name="keywords">
+  <meta content="The Garrison — restaurant in Iasi: meniu, rezervari si evenimente" name="description">
+  <meta content="restaurant, garrison, meniu, rezervare, iasi" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">

@@ -15,8 +15,8 @@
                 <div class="testimonial-content">
                   <p>
                     <i class="bi bi-quote quote-icon-left"></i>
-                    Am rezervat online in doua minute si masa era pregatita cand am ajuns.
-                    Mancarea a fost excelenta — revenim cu siguranta.
+                    Am rezervat de pe telefon, am venit la ora stabilita si masa era gata.
+                    Mancarea a fost buna — ne intoarcem.
                     <i class="bi bi-quote quote-icon-right"></i>
                   </p>
                   <h3>Alexandru Munteanu</h3>
@@ -27,7 +27,7 @@
                 </div>
               </div>
               <div class="col-lg-2 text-center">
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="Alexandru Munteanu">
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
                 <div class="testimonial-content">
                   <p>
                     <i class="bi bi-quote quote-icon-left"></i>
-                    Atmosfera e calda, iar deserturile sunt de nota zece. Ideal pentru o cina in oras.
+                    Locul e linistit, iar desertul a fost partea mea preferata. Bun pentru o cina in oras.
                     <i class="bi bi-quote quote-icon-right"></i>
                   </p>
                   <h3>Elena Radu</h3>
@@ -51,7 +51,7 @@
                 </div>
               </div>
               <div class="col-lg-2 text-center">
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="Elena Radu">
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
                 <div class="testimonial-content">
                   <p>
                     <i class="bi bi-quote quote-icon-left"></i>
-                    Am organizat o aniversare aici. Echipa a fost atenta la detalii si totul a mers fara stres.
+                    Am tinut aici o aniversare mica. Au fost atenti la ce am cerut si nu a trebuit sa alergam dupa detalii.
                     <i class="bi bi-quote quote-icon-right"></i>
                   </p>
                   <h3>Andreea Popa</h3>
@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="col-lg-2 text-center">
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="Andreea Popa">
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@
                 <div class="testimonial-content">
                   <p>
                     <i class="bi bi-quote quote-icon-left"></i>
-                    Meniul se schimba des si mereu gasesti ceva nou. Serviciul e prompt si prietenos.
+                    Meniul se schimba din cand in cand, deci merita sa te uiti din nou. Serviciul a fost ok, fara asteptari lungi.
                     <i class="bi bi-quote quote-icon-right"></i>
                   </p>
                   <h3>Cristian Enache</h3>
@@ -99,7 +99,7 @@
                 </div>
               </div>
               <div class="col-lg-2 text-center">
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="Cristian Enache">
               </div>
             </div>
           </div>

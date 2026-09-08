@@ -2,7 +2,7 @@
       <section id="gallery" class="gallery section-bg">
         <div class="container" data-aos="fade-up">
           <div class="section-header">
-            <h2>gallery</h2>
+            <h2>Gallery</h2>
             <p>Check <span>Our Gallery</span></p>
           </div>
 
@@ -16,7 +16,7 @@
                   ><img
                     src="assets/img/gallery/gallery-1.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 1"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -27,7 +27,7 @@
                   ><img
                     src="assets/img/gallery/gallery-2.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 2"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -38,7 +38,7 @@
                   ><img
                     src="assets/img/gallery/gallery-3.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 3"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -49,7 +49,7 @@
                   ><img
                     src="assets/img/gallery/gallery-4.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 4"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -60,7 +60,7 @@
                   ><img
                     src="assets/img/gallery/gallery-5.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 5"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -71,7 +71,7 @@
                   ><img
                     src="assets/img/gallery/gallery-6.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 6"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -82,7 +82,7 @@
                   ><img
                     src="assets/img/gallery/gallery-7.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 7"
                 /></a>
               </div>
               <div class="swiper-slide">
@@ -93,7 +93,7 @@
                   ><img
                     src="assets/img/gallery/gallery-8.jpg"
                     class="img-fluid"
-                    alt=""
+                    alt="Galerie The Garrison 8"
                 /></a>
               </div>
             </div>

@@ -12,7 +12,7 @@
           <h3>Petreceri private</h3>
           <div class="price align-self-start">de la 99€</div>
           <p class="description">
-            Spatiu intim pentru cine de grup, cu meniu personalizat si serviciu dedicat.
+            Pentru grupuri mai mici: meniu pe care il stabilim impreuna si o masa dedicata.
           </p>
         </div><!-- End Event item -->
 
@@ -20,7 +20,7 @@
           <h3>Evenimente corporate</h3>
           <div class="price align-self-start">de la 289€</div>
           <p class="description">
-            Lunch-uri de echipa sau after-work-uri: meniu fix, rezervare garantata, atmosfera profesionala.
+            Lunch de echipa sau after-work: meniu fix, mese rezervate, fara surprize de ultima ora.
           </p>
         </div><!-- End Event item -->
 
@@ -28,7 +28,7 @@
           <h3>Aniversari</h3>
           <div class="price align-self-start">de la 199€</div>
           <p class="description">
-            Celebrati alaturi de noi — tort la cerere, aranjamente de masa si un meniu special.
+            Putem pregati tort la cerere, aranjamente de masa si un meniu pentru ocazie.
           </p>
         </div><!-- End Event item -->
       </div>

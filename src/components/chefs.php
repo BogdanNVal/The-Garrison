@@ -20,7 +20,7 @@
           <div class="member-info">
             <h4>Andrei Popescu</h4>
             <span>Master Chef</span>
-            <p>Coordoneaza meniul de seară și aduce pe farfurie arome clasice din Moldova.</p>
+            <p>Se ocupa de meniul de seara si de preparatele clasice din Moldova pe care le tinem pe lista.</p>
           </div>
         </div>
       </div><!-- End Chefs Member -->
@@ -38,7 +38,7 @@
           <div class="member-info">
             <h4>Ioana Marinescu</h4>
             <span>Patissier</span>
-            <p>Deserturile casei: de la prajituri fine la reinterpretari ale clasicelor romanesti.</p>
+            <p>Face deserturile casei — de la prajituri mai fine la versiuni noi ale dulciurilor pe care le stim de acasa.</p>
           </div>
         </div>
       </div><!-- End Chefs Member -->
@@ -56,7 +56,7 @@
           <div class="member-info">
             <h4>Mihai Ionescu</h4>
             <span>Sous Chef</span>
-            <p>Asigura ritmul din bucatarie la pranz si tine standardele de calitate la fiecare serviciu.</p>
+            <p>Tine ritmul la pranz si verifica fiecare farfurie inainte sa iasa din bucatarie.</p>
           </div>
         </div>
       </div><!-- End Chefs Member -->

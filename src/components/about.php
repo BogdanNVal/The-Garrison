@@ -21,22 +21,21 @@
       <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
         <div class="content ps-0 ps-lg-5">
           <p class="fst-italic">
-            The Garrison este un restaurant din Iasi unde gasesti mancare buna,
-            servicii atente si o atmosfera potrivita atat pentru o cina in doi,
-            cat si pentru o seara cu prietenii.
+            The Garrison e un restaurant din Iasi: mancare buna, serviciu atent
+            si loc potrivit atat pentru o cina in doi, cat si pentru o seara cu prietenii.
           </p>
           <ul>
             <li><i class="bi bi-check2-all"></i> Preparate de sezon, gatite zilnic in bucatarie.</li>
-            <li><i class="bi bi-check2-all"></i> Rezervari online cu verificare automata a meselor libere.</li>
-            <li><i class="bi bi-check2-all"></i> Cont de client, meniu administrat din panou si cautare live pentru rezervari.</li>
+            <li><i class="bi bi-check2-all"></i> Rezervare online — iti confirmam daca avem masa libera.</li>
+            <li><i class="bi bi-check2-all"></i> Cont de client si rezervare in cateva minute.</li>
           </ul>
           <p>
-            Ne dorim ca fiecare vizita sa fie simpla: alegi din meniu, rezervi o masa
-            si te ocupi tu de restul serii. Noi ne ocupam de farfurie.
+            Ideea e simpla: alegi din meniu, rezervi masa, iar restul serii
+            ramane pe seama ta. Noi ne ocupam de farfurie.
           </p>
 
           <div class="position-relative mt-4">
-            <img src="assets/img/about-2.jpg" class="img-fluid" alt="The Garrison dining">
+            <img src="assets/img/about-2.jpg" class="img-fluid" alt="Interior The Garrison">
             <a href="https://www.youtube.com/watch?v=_SjgEopKjAE" class="glightbox play-btn"></a>
           </div>
         </div>
