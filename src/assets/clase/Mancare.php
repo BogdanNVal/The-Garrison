@@ -10,7 +10,6 @@ class Mancare  {
 
     public $error;
 
-    // Categoriile permise pentru un produs din meniu.
     const CATEGORII_VALIDE = ['starters', 'breakfast', 'lunch', 'dinner'];
 
     public function __construct($id) {
@@ -59,7 +58,6 @@ class Mancare  {
     
     }
 
-    // Returneaza toate produsele dintr-o categorie (folosit pe pagina publica si in panoul de admin).
     public static function get_by_categorie($conn, $categorie) {
       if (!in_array($categorie, self::CATEGORII_VALIDE, true)) {
         return [];
